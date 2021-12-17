@@ -6,6 +6,7 @@
   "https://randomuser.me/api/?nat=br")
 
 (defn print-user
+  "Function that takes one user as argument and print its information."
   [user]
   (let [user-dob      (:dob user)
         user-name     (:name user)
@@ -32,6 +33,7 @@
     (println (str "- Login - UUID: " (:uuid user-login)))))
 
 (defn retrieve-random-user
+  "Function that retrieves a random user from randomuser.me free web api."
   []
   (let [response-json (http.client/get random-user-url {:accept :json})
         body (:body response-json)
@@ -41,6 +43,8 @@
       (print-user user))))
 
 (defn start-user-api-service
+  "First function to be called when starting user-api service. This function
+   starts the service!"
   []
   (println "Starting user-api-service")
   (retrieve-random-user))
